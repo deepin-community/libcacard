@@ -1,0 +1,50 @@
+Source: libcacard
+Section: otherosfs
+Priority: optional
+Maintainer: Debian QEMU Team <pkg-qemu-devel@lists.alioth.debian.org>
+Uploaders: Michael Tokarev <mjt@tls.msk.ru>
+Build-Depends: debhelper-compat (= 12), pkg-config, libtool, meson,
+ libnss3-dev (>=3.12.8~),
+ libglib2.0-dev (>=2.22~),
+ libpcsclite-dev,
+# for tests: these can be moved to tests-only dep
+# once tests/meson.build is fixed to stop referencing
+# variable softhsm unconditionally for hwtests
+ opensc, softhsm2, gnutls-bin, libnss3-tools, openssl,
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Homepage: https://cgit.freedesktop.org/spice/libcacard/
+Vcs-Browser: https://salsa.debian.org/qemu-team/libcacard
+Vcs-Git: https://salsa.debian.org/qemu-team/libcacard.git
+
+Package: libcacard0
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Virtual Common Access Card (CAC) Emulator (runtime library)
+ This emulator is designed to provide emulation of actual smart cards to a
+ virtual card reader running in a guest virtual machine. The emulated smart
+ cards can be representations of real smart cards, where the necessary
+ functions such as signing, card removal/insertion, etc. are mapped to real,
+ physical cards which are shared with the client machine the emulator is
+ running on, or the cards could be pure software constructs.
+ .
+ This package provides the runtime library.
+
+Package: libcacard-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, libcacard0 (= ${binary:Version}),
+ libnss3-dev, libglib2.0-dev, libpcsclite-dev
+Description: Virtual Common Access Card (CAC) Emulator (development files)
+ This emulator is designed to provide emulation of actual smart cards to a
+ virtual card reader running in a guest virtual machine. The emulated smart
+ cards can be representations of real smart cards, where the necessary
+ functions such as signing, card removal/insertion, etc. are mapped to real,
+ physical cards which are shared with the client machine the emulator is
+ running on, or the cards could be pure software constructs.
+ .
+ This package provides files necessary to develop programs using the library.

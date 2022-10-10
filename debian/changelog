@@ -1,0 +1,94 @@
+libcacard (1:2.8.0-3) unstable; urgency=medium
+
+  * libcacard-dev also build-depends on libpcsclite-dev.
+    Really Closes: #979322
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Wed, 06 Jan 2021 19:39:33 +0300
+
+libcacard (1:2.8.0-2) unstable; urgency=high
+
+  * libcacard-dev depends on libglib2.0-dev (Closes: #979322)
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Tue, 05 Jan 2021 21:02:12 +0300
+
+libcacard (1:2.8.0-1) unstable; urgency=medium
+
+  [ Michael Tokarev ]
+  * new upstream release
+  * set maintainer to the QEMU team
+  * use secure (https) url in d/watch, d/control
+  * switch to meson build system (build-depend on meson)
+  * build-depend on opensc, softhsm2, gnutls-bin, libnss3-tools, openssl
+    for tests. tests/meson.build has a bug and configure step fails
+    if any of them missing.
+  * add new symbol to d/libcacard0.symbols
+  * add Build-Depends-Package field to d/libcacard0.symbols
+  * strip extra context from d/patches/remove-requires.private.patch
+  * remove references to non-existing files from d/copyright
+  * update d/source/options:
+    ignore source (git) files which are not in the tarball
+    remove mentions of non-existing files
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Wed, 30 Dec 2020 13:42:58 +0300
+
+libcacard (1:2.7.0-1) unstable; urgency=medium
+
+  * new upstream release
+  * debian/control: Bump Standards-Version to 4.5.0 (no further changes)
+  * debian/control, debian/compat: bump debhelper compat level to 12
+    and use debhelper-compat build-dependency instead of d/compat file
+  * debian/control: add Rules-Requires-Root: no
+  * switch to secure (https) URLs in debian/copyright
+  * d/rules: only run known build targets with dh
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 18 Jul 2020 11:41:27 +0300
+
+libcacard (1:2.6.1-1) unstable; urgency=medium
+
+  * new upstream release
+  * vscclient is just a test tool, upstream stopped building it
+    by default, so do not create libcacard-tools package anymore
+  * d/source/options: add 2 files present in git but not shipped in the tarball
+  * disable testsuite for now as it needs some love
+  * d/control: update VCS fields
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Wed, 12 Dec 2018 15:44:55 +0300
+
+libcacard (1:2.5.3-1) unstable; urgency=medium
+
+  [ Laurent Bigonville ]
+  * New upstream release (Closes: #822720)
+    - Drop patches applied upstream and refresh the remaining one
+    - debian/libcacard0.symbols: Add new exported symbol
+  * debian/control:
+    - Bump Standards-Version to 4.1.3 (no further changes)
+    - Bump priority to optional, extra is deprecated
+    - Add libpcsclite-dev to the build-dependency to enabled pcsc passthrough
+
+  [ Helmut Grohne ]
+  * Fix FTCBFS: demote libtool-bin build dependency to libtool (Closes: #871679)
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Tue, 10 Apr 2018 09:03:52 +0300
+
+libcacard (1:2.5.0-3) unstable; urgency=high
+
+  * smartcard-fix-memory-leak-in-vcard_apdu_new-CVE-2017-6414.patch
+    Closes: #856501, CVE-2017-6414
+  * dont-fail-if-caller-didn-t-pick-previous-response.patch
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 04 Mar 2017 11:57:23 +0300
+
+libcacard (1:2.5.0-2) unstable; urgency=medium
+
+  * add remove-requires.private.patch to remove Requires.private
+    from libcacard.pc.  We're not building static library so
+    these are not used, but pkg-config wants to see the dependent
+    .pc files.  Arguably it is pkg-config bug.  (Closes: #804289)
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Sat, 07 Nov 2015 13:03:01 +0300
+
+libcacard (1:2.5.0-1a) unstable; urgency=medium
+
+  * Initial release, source has been split out of qemu
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Fri, 09 Oct 2015 13:58:13 +0300

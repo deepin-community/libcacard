@@ -1,0 +1,6 @@
+# list of autogen files to ignore to be able to build from git source
+extend-diff-ignore = ^autogen\.sh$|^build-aux/git-version-gen$|^git\.mk$
+extend-diff-ignore =  ^\.version$|^\.travis\.yml$
+extend-diff-ignore =  ^\.gitlab-ci\.yml$|^build-aux/nss\.supp$
+# the following files are kept in git (2.8.0) but are missing in the tarball
+extend-diff-ignore = ^Makefile.am$|^configure.ac$|^suppr.txt$|^build-aux/glib-tap.mk$|^build-aux/tap-driver.sh$|^build-aux/tap-test$|^src/Makefile.am$
